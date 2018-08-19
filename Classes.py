@@ -76,7 +76,8 @@ class Knight(Piece):
         return self.color + " knight"
 
     def get_moves(self, board):
-        pass
+        moves = []
+        return moves
 
 
 class Bishop(Piece):
@@ -93,7 +94,8 @@ class Bishop(Piece):
         return self.color + " bishop"
 
     def get_moves(self, board):
-        pass
+        moves = []
+        return moves
 
 
 class Rook(Piece):
@@ -110,7 +112,8 @@ class Rook(Piece):
         return self.color + " rook"
 
     def get_moves(self, board):
-        pass
+        moves = []
+        return moves
 
 
 class Queen(Piece):
@@ -127,7 +130,8 @@ class Queen(Piece):
         return self.color + " queen"
 
     def get_moves(self, board):
-        pass
+        moves = []
+        return moves
 
 
 class King(Piece):
@@ -144,4 +148,5 @@ class King(Piece):
         return self.color + " king"
 
     def get_moves(self, board):
-        pass
+        moves = []
+        return moves
