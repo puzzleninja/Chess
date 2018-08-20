@@ -47,6 +47,7 @@ while not done:
                     selected = None
                     white_turn = not white_turn
                     turn += 1 if white_turn else 0
+                    print(Piece.check_checker(board))
 
                 elif white_turn and board[mouse_y][mouse_x]:
                     if board[mouse_y][mouse_x].color == "white":

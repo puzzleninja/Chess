@@ -7,6 +7,29 @@ class Piece:
         self.pos = pos
         self.image = image
 
+    @staticmethod
+    def check_checker(board):
+        check = None
+        white_king_location = None
+        black_king_location = None
+        for row in board:
+            for tile in row:
+                if tile:
+                    if tile.image == white_king:
+                        white_king_location = tile.pos
+                    elif tile.image == black_king:
+                        black_king_location = tile.pos
+        for row in board:
+            for tile in row:
+                if tile:
+                    if tile.color == "black":
+                        if white_king_location in tile.get_moves(board):
+                            check = "white"
+                    elif tile.color == "white":
+                        if black_king_location in tile.get_moves(board):
+                            check = "black"
+        return check
+
 
 class Pawn(Piece):
     def __init__(self, color, pos):
