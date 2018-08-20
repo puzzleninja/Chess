@@ -14,6 +14,7 @@ selected = None
 selected_piece = None
 
 white_turn = True
+turn = 1
 
 clock = pg.time.Clock()
 done = False
@@ -33,10 +34,11 @@ while not done:
                 if white_turn and board[mouse_y][mouse_x]:
                     if board[mouse_y][mouse_x].color == "white":
                         selected = (mouse_x, mouse_y)
+                        selected_piece = board[mouse_y][mouse_x]
                 elif not white_turn and board[mouse_y][mouse_x]:
                     if board[mouse_y][mouse_x].color == "black":
                         selected = (mouse_x, mouse_y)
-                selected_piece = board[mouse_y][mouse_x]
+                        selected_piece = board[mouse_y][mouse_x]
             else:
                 if (mouse_y, mouse_x) in selected_piece.get_moves(board):
                     board[selected_piece.pos[0]][selected_piece.pos[1]] = None
@@ -44,6 +46,7 @@ while not done:
                     board[selected_piece.pos[0]][selected_piece.pos[1]] = selected_piece
                     selected = None
                     white_turn = not white_turn
+                    turn += 1 if white_turn else 0
 
                 elif white_turn and board[mouse_y][mouse_x]:
                     if board[mouse_y][mouse_x].color == "white":
@@ -57,9 +60,9 @@ while not done:
                     selected = None
 
     if white_turn:
-        pg.display.set_caption("Chess - White's Turn")
+        pg.display.set_caption("Chess - White's Move - Turn " + str(turn))
     else:
-        pg.display.set_caption("Chess - Black's Turn")
+        pg.display.set_caption("Chess - Black's Move - Turn " + str(turn))
 
     screen.fill(cream)
     for i in range(len(board)):
@@ -73,7 +76,9 @@ while not done:
                 screen.blit(tile.image, (tile.pos[1]*60, tile.pos[0]*60))
 
     if selected:
-        pg.draw.rect(screen, yellow, (selected[0]*60, selected[1]*60, 60, 60), 3)
+        pg.draw.rect(screen, blue, (selected[0]*60, selected[1]*60, 60, 60), 3)
+        for move in selected_piece.get_moves(board):
+            pg.draw.circle(screen, blue, (30 + move[1]*60, 30 + move[0]*60), 10)
 
     pg.display.update()
     clock.tick(30)

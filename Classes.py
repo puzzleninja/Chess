@@ -77,6 +77,24 @@ class Knight(Piece):
 
     def get_moves(self, board):
         moves = []
+        potential_relative_moves = [
+            (-1, -2),
+            (-2, -1),
+            (-1, 2),
+            (-2, 1),
+            (1, -2),
+            (2, -1),
+            (1, 2),
+            (2, 1)
+        ]
+        for move in potential_relative_moves:
+            potential_move = (self.pos[0] + move[0], self.pos[1] + move[1])
+            if 0 <= potential_move[0] < len(board) and 0 <= potential_move[1] < len(board[0]):
+                if not board[potential_move[0]][potential_move[1]]:
+                    moves.append(potential_move)
+                else:
+                    if board[potential_move[0]][potential_move[1]].color != self.color:
+                        moves.append(potential_move)
         return moves
 
 

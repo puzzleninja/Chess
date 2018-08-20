@@ -8,7 +8,7 @@ screen_height = 480
 # colors
 cream = (251, 241, 222)
 brown = (171, 147, 112)
-yellow = (255, 255, 0)
+blue = (30, 206, 255, 50)
 
 # images
 white_pawn = pg.image.load("Assets/white_pawn.png")
