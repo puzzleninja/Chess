@@ -143,6 +143,18 @@ class Rook(Piece):
 
     def get_moves(self, board):
         moves = []
+        for i, j in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+            tile = (self.pos[0], self.pos[1])
+            for x in range(8):
+                tile = (tile[0] + i, tile[1] + j)
+                if 0 <= tile[0] < len(board) and 0 <= tile[1] < len(board[0]):
+                    if not board[tile[0]][tile[1]]:
+                        moves.append(tile)
+                    elif board[tile[0]][tile[1]].color != self.color:
+                        moves.append(tile)
+                        break
+                    else:
+                        break
         return moves
 
 
@@ -161,6 +173,19 @@ class Queen(Piece):
 
     def get_moves(self, board):
         moves = []
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                tile = (self.pos[0], self.pos[1])
+                for x in range(8):
+                    tile = (tile[0] + i, tile[1] + j)
+                    if 0 <= tile[0] < len(board) and 0 <= tile[1] < len(board[0]):
+                        if not board[tile[0]][tile[1]]:
+                            moves.append(tile)
+                        elif board[tile[0]][tile[1]].color != self.color:
+                            moves.append(tile)
+                            break
+                        else:
+                            break
         return moves
 
 
