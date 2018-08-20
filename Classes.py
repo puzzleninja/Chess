@@ -58,7 +58,6 @@ class Pawn(Piece):
                 if board[self.pos[0] + 1][self.pos[1] - 1]:
                     if board[self.pos[0] + 1][self.pos[1] - 1].color == "white":
                         moves.append((self.pos[0] + 1, self.pos[1] - 1))
-
         return moves
 
 
@@ -113,6 +112,19 @@ class Bishop(Piece):
 
     def get_moves(self, board):
         moves = []
+        for i in [-1, 1]:
+            for j in [-1, 1]:
+                tile = (self.pos[0], self.pos[1])
+                for x in range(8):
+                    tile = (tile[0] + i, tile[1] + j)
+                    if 0 <= tile[0] < len(board) and 0 <= tile[1] < len(board[0]):
+                        if not board[tile[0]][tile[1]]:
+                            moves.append(tile)
+                        elif board[tile[0]][tile[1]].color != self.color:
+                            moves.append(tile)
+                            break
+                        else:
+                            break
         return moves
 
 

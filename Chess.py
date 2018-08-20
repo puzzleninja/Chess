@@ -73,7 +73,7 @@ while not done:
     for row in board:
         for tile in row:
             if tile:
-                screen.blit(tile.image, (tile.pos[1]*60, tile.pos[0]*60))
+                screen.blit(tile.image, (tile.pos[1]*60 - 1, tile.pos[0]*60))
 
     if selected:
         pg.draw.rect(screen, blue, (selected[0]*60, selected[1]*60, 60, 60), 3)
